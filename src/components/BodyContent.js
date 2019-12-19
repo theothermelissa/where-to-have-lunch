@@ -1,35 +1,48 @@
 import React, { Component } from 'react';
 
+const inputStyle = {
+  width: "200px",
+  margin: "10px",
+}
+
 class BodyContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "Type something.",
+      text: "What are the options? Separate them with commas.",
+      choices: [],
     };
-    this.updateText = this.updateText.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  updateText() {
+  handleSubmit() {
+    const optionsList = this.state.text.split(",");
     this.setState({
-      text: "something else",
-    })
+      choices: optionsList
+    });
   }
-  handleChange(event) {
+  handleChange(e) {
     this.setState({
-      text: event.target.value
+      text: e.target.value
     });
   }
   render() {
+    const options = this.state.choices.map(name => <li key={name}>{name}</li>);
     return (
     <div>
+      <h1>What are you thinking?</h1>
       <input
         type="text"
-        // value={this.state.text}
+        style={inputStyle}
+        placeholder="Separate Options with Commas"
         onChange={this.handleChange}
         />
+      <button onClick={this.handleSubmit}>Make My List</button>
       <br />
-      <p>{this.state.text}</p>
-      {/* <button onClick={this.updateText}>Update</button> */}
+      <h2>Your Choices:</h2>
+      <ul>
+        {options}
+      </ul>
     </div>
     )
   }
