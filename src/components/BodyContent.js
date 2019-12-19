@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 
-const PrefillText = "Abracadabra.";
-
 class BodyContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: PrefillText,
+      text: "something",
     };
+    this.updateText = this.updateText.bind(this);
   }
-
+  updateText() {
+    this.setState({
+      text: "something else",
+    })
+  }
   render() {
     return (
-    <p>{this.state.text}</p>
+    <div>
+      <p>{this.state.text}</p>
+      <button onClick={this.updateText}>Update</button>
+    </div>
     )
   }
 };
