@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 
-// const inputStyle = {
-//   width: "300px",
-//   margin: "10px",
-// }
-
 class BodyContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "What are your options? Separate them with commas.",
+      text: "",
       choices: [],
       randomIndex: '',
     };
@@ -37,7 +32,7 @@ class BodyContent extends Component {
 
   reset() {
     this.setState({
-      text: "What are your options? Separate them with commas.",
+      text: "",
       choices: [],
       randomIndex: ""
     });
@@ -52,7 +47,8 @@ class BodyContent extends Component {
         <input
           className="inputBox"
           type="text"
-          placeholder={this.state.text}
+          value={this.state.text}
+          placeholder="What are your options? Separate them with commas."
           onChange={this.handleChange}
           />
         <button onClick={this.handleSubmit}>Make My List</button>
