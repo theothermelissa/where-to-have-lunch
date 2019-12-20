@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-const inputStyle = {
-  width: "300px",
-  margin: "10px",
-}
+// const inputStyle = {
+//   width: "300px",
+//   margin: "10px",
+// }
 
 class BodyContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "What are the options? Separate them with commas.",
+      text: "What are your options? Separate them with commas.",
       choices: [],
       randomIndex: '',
     };
@@ -35,41 +35,33 @@ class BodyContent extends Component {
     });
   }
 
-  // function getRandomInt(min, max) {
-  //   min = Math.ceil(min);
-  //   max = Math.floor(max);
-  //   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-  // }
-  
-
   reset() {
     this.setState({
+      text: "What are your options? Separate them with commas.",
+      choices: [],
       randomIndex: ""
     });
   }
   render() {
     const options = this.state.choices.map(name => <li key={name}>{name}</li>);
-    const choice = options[this.state.randomIndex];
+    const choice = this.state.choices[this.state.randomIndex];
     const makeMyChoice = <button onClick={this.choose}>Decide For Me</button>;
     const startOver = <button onClick={this.reset}>Start Over</button>
     return (
-    <div>
-      <h2>What are you thinking?</h2>
-      <input
-        type="text"
-        style={inputStyle}
-        placeholder={this.state.text}
-        onChange={this.handleChange}
-        />
-      <button onClick={this.handleSubmit}>Make My List</button>
-      <br />
-      <h2>Your Choices:</h2>
-      <ul>
-        {options}
-      </ul>
-      {
-        this.state.randomIndex === "" ? makeMyChoice : startOver
-      }
+    <div className="container">
+        <input
+          className="inputBox"
+          type="text"
+          placeholder={this.state.text}
+          onChange={this.handleChange}
+          />
+        <button onClick={this.handleSubmit}>Make My List</button>
+        <ul>
+          {options}
+        </ul>
+        {
+          this.state.randomIndex === "" ? makeMyChoice : startOver
+        }
       <h1>{choice}</h1>
     </div>
     )
